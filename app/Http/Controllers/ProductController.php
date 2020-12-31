@@ -20,13 +20,14 @@ class ProductController extends Controller
     {
         $category_id = $request->category_id;
         $categories = DB::table('categories')->get();
-        if (!$category_id){
-            $products = Product::all();
+        if (!$category_id || $categories->where('id', $category_id)->isEmpty()){
+            $products = Product::paginate(10);
         }
         else{
-            $products = Product::where('category_id', $category_id)->get();
+            $products = Product::where('category_id', $category_id)->paginate(10);
         }
-        return view('product.index', ['products' => $products, 'categories' => $categories]);
+        return view('product.index', ['products' => $products, 'categories' => $categories,
+            'selected_category' => $category_id]);
     }
 
     /**
@@ -78,7 +79,7 @@ class ProductController extends Controller
                 'quantity' => $request->input('quantity'),
                 'category_id' => (int) $request->input('category_id'),
             ]);
-            return back() ->with('success', 'Add A Product Success.')//lưu thông báo kèm theo để hiển thị trên view
+            return redirect('/products') ->with('success', 'Add A Product Success.')//lưu thông báo kèm theo để hiển thị trên view
             ->with('file', $filename);
         }
 
@@ -93,7 +94,8 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = DB::table('products')->find($id);
-        return view('product.show', ['product' => $product]);
+        $category = DB::table('categories')->where('id', $product->category_id)->first();
+        return view('product.show', ['product' => $product, 'category' => $category]);
     }
 
     /**

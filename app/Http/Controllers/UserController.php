@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Profile;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = DB::table('users')->get();
+        $users = DB::table('users')->paginate(10);
         return View('user.index',['users'=>$users]);
     }
 
@@ -53,7 +54,7 @@ class UserController extends Controller
         $user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
         $user->role_id = (int) $request->input('role_id');
-        $user->email_verified_at = now();
+        $user->email_verified_at = Carbon::now();
 
         $user->save();
         return redirect('/users')->with('success', 'Add A User Success.');

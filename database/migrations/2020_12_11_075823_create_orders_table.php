@@ -17,6 +17,8 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->string('status')->nullable(false);
             $table->timestamp('order_date');
+//            $table->integer('counter')->default(0);
+//            $table->integer('total')->default(0);
             $table->integer('user_id')->nullable(false);
 //            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

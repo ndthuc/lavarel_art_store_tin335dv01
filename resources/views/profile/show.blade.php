@@ -2,7 +2,6 @@
 
 @section('body')
     @include('notification.notification')
-    <div class="container-fluid">
         <div class="row">
             <div class="col-md-8">
                 <div class="card">
@@ -67,7 +66,6 @@
                             <a class="btn btn-primary pull-right" href="/profiles/{{$user->id}}/edit">
                                 <i class="material-icons">update</i>
                                 Update Profile</a>
-{{--                            <button type="submit" class="btn btn-primary pull-right">Update Profile</button>--}}
                             <div class="clearfix"></div>
                         </form>
                     </div>
@@ -91,5 +89,4 @@
                 </div>
             </div>
         </div>
-    </div>
 @endsection

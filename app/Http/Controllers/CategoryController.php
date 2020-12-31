@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = DB::table('categories')->get();
+        $categories = DB::table('categories')->paginate(10);
         return view('category.index', ['categories' => $categories]);
     }
 
@@ -52,8 +53,8 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = DB::table('categories')->find($id);
-        $products = DB::table('products')->where('category_id', $id)->get();
-        return view('category.show', ['category' => $category,'products' => $products]);
+//        $products = Product::where('category_id', $id)->get();
+        return view('category.show', ['category' => $category]);
     }
 
     /**

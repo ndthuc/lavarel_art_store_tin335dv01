@@ -1,7 +1,6 @@
 @extends('layouts.layout')
 
 @section('body')
-    <div class="container-fluid">
         <div class="row">
             <div class="col-md-8">
                 <div class="card">
@@ -45,6 +44,4 @@
                 </div>
             </div>
         </div>
-        @include('product.table_products')
-    </div>
 @endsection

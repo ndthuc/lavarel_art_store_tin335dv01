@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
@@ -28,5 +29,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Blade::component('package-alert', Alert::class);
         Schema::defaultStringLength(191); //Solved by increasing StringLength
+        Paginator::defaultView('pagination.custom-pagination');
+        Paginator::defaultSimpleView('pagination.custom-pagination');
     }
 }

@@ -5,25 +5,29 @@
                 <div class="nav-tabs-navigation">
                     <div class="nav-tabs-wrapper">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-5">
                                 <h4 class="card-title">Orders</h4>
                                 <p class="card-category">Orders Managements</p>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-7">
                                 <form class="" action="/orders" method="GET">
                                     <div class="row">
-                                        <div class="col-md-9 bg-light rounded pull-right">
+                                        <div class="col-md-10 bg-light rounded">
                                             <select name="status" class="form-control">
                                                 <option value="">Select some status to filter</option>
                                                 @foreach ($statuses as $status)
-                                                    <option value={{$status->status_name}}>{{$status->status_name}}</option>
+                                                    <option value={{$status->status_name}}
+                                                    @if($status->status_name == $selected_status)
+                                                        selected="selected"
+                                                        @endif>{{$status->status_name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="col-md-2">
-                                            <button type="submit" class="nav-item btn btn-success pull-right">
+                                            <button type="submit" class="nav-item btn btn-success btn-just-icon">
                                                 <i class="material-icons">filter_alt</i>
-                                            </button></div>
+                                            </button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -35,8 +39,8 @@
                 <div class="table-responsive">
                     <table class="table">
                         <thead class=" text-primary">
-                        <th>
-                            ID
+                        <th class="text-center">
+                            #
                         </th>
                         <th>
                             Status
@@ -44,17 +48,19 @@
                         <th>
                             Order Date
                         </th>
-                        <th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th class="text-center">
                             Customer ID
                         </th>
-                        <th>
+                        <th class="text-right">
                             Actions
                         </th>
                         </thead>
                         <tbody>
                         @foreach($orders as $order)
                             <tr>
-                                <td>
+                                <td class="text-center">
                                     {{$order->id}}
                                 </td>
                                 <td>
@@ -63,16 +69,18 @@
                                 <td>
                                     {{$order->order_date}}
                                 </td>
-                                <td>
+                                <td></td>
+                                <td></td>
+                                <td class="text-center">
                                     {{$order->user_id}}
                                 </td>
-                                <td>
-                                    <a href="/orders/{{$order->id}}" class="btn btn-success">
+                                <td class="td-actions text-right">
+                                    <a href="/orders/{{$order->id}}" class="btn btn-success btn-just-icon">
                                         <i class="material-icons">visibility</i>
-                                        VIEW</a>
-                                    <a href="/orders/{{$order->id}}/edit" class="btn btn-primary">
+                                    </a>
+                                    <a href="/orders/{{$order->id}}/edit" class="btn btn-primary btn-just-icon">
                                         <i class="material-icons">update</i>
-                                        UPDATE</a>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -83,3 +91,4 @@
         </div>
     </div>
 </div>
+{{$orders->appends(request()->input())->links()}}

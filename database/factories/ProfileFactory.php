@@ -26,7 +26,7 @@ class ProfileFactory extends Factory
         return [
             'full_name' =>$this->faker->name,
             'address' => $this->faker->address,
-            'avatar' => '/storage/productImages/chii.jpg',
+            'avatar' => '/storage/uploads/chii.jpg',
             'birthday' => $this->faker->date(),
             'user_id' =>$id,
         ];

@@ -18,9 +18,9 @@ The above copyright notice and this permission notice shall be included in all c
 
 <body class="">
 <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image="{{ asset('bootstrap/assets/img/sidebar-1.jpg') }}">
-        <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
-                Creative Tim
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="{{ asset('img/sidebar-1.jpg') }}">
+        <div class="logo"><a href="/" class="simple-text logo-normal">
+                Art Store
             </a></div>
         @include('includes.sidebar')
 
@@ -30,7 +30,17 @@ The above copyright notice and this permission notice shall be included in all c
         @include('includes.navbar')
         <!-- End Navbar -->
         <div class="content">
-            @yield('body')
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a class="btn btn-primary" href="{{ url()->previous() }}">
+                            <i class="material-icons">arrow_back_ios</i>
+                            BACK
+                        </a>
+                    </div>
+                </div>
+                @yield('body')
+            </div>
         </div>
         @include('includes.footer')
         @yield('js')

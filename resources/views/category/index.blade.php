@@ -2,22 +2,22 @@
 
 @section('body')
     @include('notification.notification')
-    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-tabs card-header-primary">
                         <div class="nav-tabs-navigation">
                             <div class="nav-tabs-wrapper">
-                                <div class="float-left"><span style="font-size: large" class="nav-tabs-title">Categories</span></div>
-                                <div class="float-right">
-                                    <ul class="nav nav-tabs" data-tabs="tabs">
-                                        <li class="nav-item">
-                                            <a class="nav-link bg-success" href="/categories/create">
-                                                <i class="material-icons">add</i> ADD
-                                            </a>
-                                        </li>
-                                    </ul>
+                                <div class="row">
+                                    <div class="col-md-11">
+                                        <h4 class="card-title">Categories</h4>
+                                        <p class="card-category">Categories Managements</p>
+                                    </div>
+                                    <div class="col-md-1 text-right">
+                                        <a class="btn btn-success btn-just-icon" href="/categories/create">
+                                            <i class="material-icons">add</i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -26,8 +26,8 @@
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class=" text-primary">
-                                <th>
-                                    ID
+                                <th class="text-center">
+                                    #
                                 </th>
                                 <th>
                                     Category
@@ -35,14 +35,14 @@
                                 <th>
                                     Description
                                 </th>
-                                <th>
+                                <th class="text-right">
                                     Actions
                                 </th>
                                 </thead>
                                 <tbody>
                                 @foreach($categories as $category)
                                     <tr>
-                                        <td>
+                                        <td class="text-center">
                                             {{$category->id}}
                                         </td>
                                         <td>
@@ -51,20 +51,19 @@
                                         <td>
                                             {{$category->description}}
                                         </td>
-                                        <td>
-                                            <a href="/categories/{{$category->id}}" class="btn btn-success">
+                                        <td class="td-actions text-right form-inline justify-content-end">
+                                            <a href="/categories/{{$category->id}}" class="btn btn-success btn-just-icon">
                                                 <i class="material-icons">visibility</i>
-                                                PRODUCTS</a>
-                                            <a href="/categories/{{$category->id}}/edit" class="btn btn-primary">
+                                            </a>
+                                            <a href="/categories/{{$category->id}}/edit" class="btn btn-primary btn-just-icon">
                                                 <i class="material-icons">update</i>
-                                                UPDATE</a>
+                                            </a>
                                             <form action = "{{route('categories.destroy', $category->id)}}" method = "POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button TYPE="submit" class="btn btn-danger" onclick="return confirm('Are you sure want to delete?' +
+                                                <button TYPE="submit" class="btn btn-danger btn-just-icon" onclick="return confirm('Are you sure want to delete?' +
                                                  'If you delete this category, the products belong to it ll be delete too.')">
                                                     <i class="material-icons">delete</i>
-                                                    DELETE
                                                 </button>
                                             </form>
                                         </td>
@@ -77,5 +76,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    {{$categories->links()}}
 @endsection

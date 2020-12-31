@@ -6,7 +6,6 @@
     @csrf
     @method('PUT')<!-- khai báo này dùng để thiết lập phương thức PUT
 									nếu không khai báo thì khi submit không thiết lập HttpPUT -->
-        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -47,6 +46,5 @@
                     </div>
                 </div>
             </div>
-        </div>
     </form>
 @endsection

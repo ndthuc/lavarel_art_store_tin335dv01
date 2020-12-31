@@ -3,7 +3,7 @@
     <ul class="nav">
         <li class="nav-item {{ Request::is('categories*') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('categories.index') }}">
-                <i class="material-icons">dashboard</i>
+                <i class="material-icons">category</i>
                 <p>Categories</p>
             </a>
         </li>

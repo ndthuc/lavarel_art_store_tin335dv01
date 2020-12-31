@@ -48,4 +48,3 @@ Route::resource('profiles', ProfileController::class)
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/filter',[App\Http\Controllers\OrderController::class,'filter'])->name('filter')->middleware(['auth','role:Editor,Admin']);

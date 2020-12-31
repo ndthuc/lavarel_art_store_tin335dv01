@@ -15,22 +15,53 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function filter_by_status($status){
+        return $orders = Order::where('status', $status)
+            ->orderBy('order_date', 'desc')
+            ->paginate(10);
+    }
+    public function filter_by_dates($from_date, $to_date){
+        return $orders = DB::table('orders')
+            ->whereBetween('order_date', [$from_date, $to_date])
+            ->paginate(10);
+    }
     public function index(Request $request)
     {
-        //filter by status
         $statuses = DB::table('order_statuses')->get();
         $status = $request->status;
-        if (!$status){
-            $orders = Order::orderBy('order_date', 'desc')->get();
+
+        $from_date = $request->input('from_date');
+        $to_date = $request->input('to_date');
+
+        static $orders = null;
+        static $errors = null;
+
+        if ($status != null && $statuses
+                ->where('status_name', '=', $status)
+                ->isNotEmpty()){
+            $orders = $this->filter_by_status($status);
+        }
+        elseif ($from_date!= null || $to_date != null){
+            $validator = Validator::make($request->all(), [
+                'from_date' => 'required|date',
+                'to_date' => 'required|date|after_or_equal:from_date'
+            ]);
+            if ($validator->fails()){
+                $orders = Order::orderBy('order_date', 'desc')->paginate(10);
+            }
+            else{
+                $orders = $this->filter_by_dates($from_date, $to_date);
+            }
         }
         else{
-                $orders = Order::where('status', $status)
-                ->orderBy('order_date', 'desc')
-                ->get();
+            $orders = Order::orderBy('order_date', 'desc')->paginate(10);
         }
         return view('order.index', [
             'orders' => $orders,
-            'statuses' => $statuses]);
+            'statuses' => $statuses,
+            'selected_status' => $status,
+            'from_date' => $from_date,
+            'to_date' => $to_date,]);
     }
 
     /**
@@ -68,11 +99,19 @@ class OrderController extends Controller
             ->where('order_id', $id)
             ->join('orders', 'orders.id', '=', 'order_product.order_id')
             ->join('products', 'products.id', '=', 'order_product.product_id')
-            ->select( 'products.id', 'products.product_name', 'products.image', 'products.price', 'products.include_VAT')
+            ->select( 'products.id',
+                'products.product_name',
+                'products.image',
+                'products.price',
+                'products.include_VAT')
             ->orderBy('products.id', 'asc')
-            ->get();
-
-        return view('order.show', ['order' => $order, 'status' => $status, 'products' => $products]);
+            ->paginate(5);
+        $user = DB::table('users')->where('id', $order->user_id)->first();
+        return view('order.show',
+            [   'order' => $order,
+                'status' => $status,
+                'products' => $products,
+                'user' => $user]);
     }
 
     /**
@@ -117,41 +156,5 @@ class OrderController extends Controller
     {
         $order->delete();
         return redirect()->back()->with('success', 'Delete Order Success');
-    }
-
-    public function searchByName(Request $request){
-        $validator = Validator::make($request->all(), [
-            'keyword' => 'required',
-        ]);
-        if ($validator->fails()){
-            return back()
-                ->withErrors($validator)
-                ->withInput()
-                ->with('fail', 'Cannot filter orders');
-        }else{
-            $keyword = $request->input('keyword');
-            $orders = DB::table('orders')
-                ->where('name','like','%'.$keyword.'%')
-                ->get();
-            return view('order.filter', ['orders' => $orders]);
-        }
-    }
-
-    public function filter(Request $request){
-        $validator = Validator::make($request->all(), [
-            'from_date' => 'required|date',
-            'to_date' => 'required|date|after_or_equal:from_date'
-        ]);
-        if ($validator->fails()){
-            return back()
-                ->withErrors($validator)
-                ->withInput()
-                ->with('fail', 'Cannot filter orders');
-        }else{
-            $from = $request->input('from_date');
-            $to = $request->input('to_date');
-            $orders = DB::table('orders')->whereBetween('order_date', [$from, $to])->get();
-            return view('order.filter', ['orders' => $orders, 'from_date' => $from, 'to_date' => $to]);
-        }
     }
 }

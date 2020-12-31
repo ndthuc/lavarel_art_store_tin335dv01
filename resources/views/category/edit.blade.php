@@ -6,7 +6,6 @@
     <form class="category" action="{{ route('categories.update', ['category' => $category->id])}}" method="POST" >
         @csrf
         @method('PUT')
-        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -41,7 +40,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     </form>
 
 @endsection

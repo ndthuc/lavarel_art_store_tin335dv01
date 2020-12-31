@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\OrderStatus;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Carbon;
 
 class OrderFactory extends Factory
 {
@@ -25,7 +26,7 @@ class OrderFactory extends Factory
     {
         return [
             'status' => OrderStatus::all()->random()->status_name,
-            'order_date' => now(),
+            'order_date' => Carbon::now(),
             'user_id' => User::all()->random()->id
         ];
     }
