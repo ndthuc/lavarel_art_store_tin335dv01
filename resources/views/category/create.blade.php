@@ -1,5 +1,8 @@
 @extends('layouts.layout')
 
+@section('nav-icon', 'add_task')
+@section('nav-brand', 'Category')
+
 @section('body')
     @include('notification.notification')
 

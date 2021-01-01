@@ -1,5 +1,8 @@
 @extends('layouts.layout')
 
+@section('nav-icon', 'visibility')
+@section('nav-brand', $profile->full_name)
+
 @section('body')
     @include('notification.notification')
         <div class="row">
@@ -65,7 +68,7 @@
                             </div>
                             <a class="btn btn-primary pull-right" href="/profiles/{{$user->id}}/edit">
                                 <i class="material-icons">update</i>
-                                Update Profile</a>
+                                Update</a>
                             <div class="clearfix"></div>
                         </form>
                     </div>

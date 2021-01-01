@@ -1,4 +1,8 @@
 @extends('layouts.layout')
+
+@section('nav-icon', 'add_task')
+@section('nav-brand', 'Profile')
+
 @section('js')
     <script>
         $('#avatar').on('change',function(){

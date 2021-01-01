@@ -1,5 +1,8 @@
 @extends('layouts.layout')
 
+@section('nav-icon', 'update')
+@section('nav-brand', $category->categoryName)
+
 @section('body')
     @include('notification.notification')
 

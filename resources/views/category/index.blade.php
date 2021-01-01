@@ -1,5 +1,7 @@
 @extends('layouts.layout')
+@section('nav-icon', 'category')
 
+@section('nav-brand', 'Categories')
 @section('body')
     @include('notification.notification')
         <div class="row">

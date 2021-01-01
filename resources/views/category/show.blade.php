@@ -1,5 +1,8 @@
 @extends('layouts.layout')
 
+@section('nav-icon', 'visibility')
+@section('nav-brand', $category->categoryName)
+
 @section('body')
         <div class="row">
             <div class="col-md-8">
@@ -35,7 +38,7 @@
 
                             </div>
 
-                            <a class="btn btn-default" href="/categories/{{$category->id}}/edit">
+                            <a class="btn btn-primary" href="/categories/{{$category->id}}/edit">
                                 <i class="material-icons">update</i>
                                 UPDATE</a>
                             <div class="clearfix"></div>

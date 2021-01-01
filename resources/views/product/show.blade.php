@@ -1,4 +1,8 @@
 @extends('layouts.layout')
+
+@section('nav-icon', 'visibility')
+@section('nav-brand', $product->product_name)
+
 @section('body')
 
         <div class="row">
@@ -70,7 +74,7 @@
                             </div>
                             <a class="btn btn-primary" href="/products/{{$product->id}}/edit">
                                 <i class="material-icons">update</i>
-                                Update Product</a>
+                                Update</a>
                             {{--                            <button type="submit" class="btn btn-primary pull-right">Update Profile</button>--}}
                             <div class="clearfix"></div>
                         </form>

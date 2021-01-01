@@ -1,5 +1,8 @@
 @extends('layouts.layout')
 
+@section('nav-icon', 'people_alt')
+@section('nav-brand', 'Users')
+
 @section('body')
     @include('notification.notification')
         <div class="row">

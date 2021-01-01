@@ -1,6 +1,6 @@
 {{--<script src="{{ asset('js/core/jquery.min.js') }}"></script>--}}
 {{--<script src="{{ asset('js/core/popper.min.js') }}"></script>--}}
-{{--<script src="{{ asset('js/core/bootstrap-material-design.min.js"') }}></script>--}}
+{{--<script src="{{ asset('js/core/bootstrap-material-design.min.js') }}"></script>--}}
 {{--<script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>--}}
 {{--<!-- Plugin for the momentJs  -->--}}
 {{--<script src="{{ asset('js/plugins/moment.min.js') }}"></script>--}}
@@ -33,7 +33,7 @@
 {{--<!--  Google Maps Plugin    -->--}}
 {{--<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>--}}
 {{--<!-- Chartist JS -->--}}
-{{--<script src="{{ asset('bootstrap/ssets/js/plugins/chartist.min.js') }}a"></script>--}}
+{{--<script src="{{ asset('js/plugins/chartist.min.js') }}a"></script>--}}
 {{--<!--  Notifications Plugin    -->--}}
 {{--<script src="{{ asset('js/plugins/bootstrap-notify.js') }}"></script>--}}
 {{--<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->--}}

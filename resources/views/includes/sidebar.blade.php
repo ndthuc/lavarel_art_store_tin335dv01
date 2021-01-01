@@ -7,7 +7,7 @@
                 <p>Categories</p>
             </a>
         </li>
-        <li class="nav-item {{ Request::is('products*') ? 'active' : '' }}">
+        <li class="nav-item {{ Request::segment(1) ==='products' ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('products.index') }}">
                 <i class="material-icons">list</i>
                 <p>Products</p>
@@ -15,7 +15,7 @@
         </li>
         <li class="nav-item {{ Request::is('users*') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('users.index') }}">
-                <i class="material-icons">person</i>
+                <i class="material-icons">people_alt</i>
                 <p>Users</p>
             </a>
         </li>

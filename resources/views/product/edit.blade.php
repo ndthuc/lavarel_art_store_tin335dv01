@@ -1,4 +1,8 @@
 @extends('layouts.layout')
+
+@section('nav-icon', 'update')
+@section('nav-brand', $product->product_name)
+
 @section('js')
     <script>
         $('#avatar').on('change',function(){

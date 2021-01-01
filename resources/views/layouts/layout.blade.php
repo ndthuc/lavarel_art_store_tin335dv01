@@ -31,14 +31,6 @@ The above copyright notice and this permission notice shall be included in all c
         <!-- End Navbar -->
         <div class="content">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-6">
-                        <a class="btn btn-primary" href="{{ url()->previous() }}">
-                            <i class="material-icons">arrow_back_ios</i>
-                            BACK
-                        </a>
-                    </div>
-                </div>
                 @yield('body')
             </div>
         </div>

@@ -1,5 +1,8 @@
 @extends('layouts.layout')
 
+@section('nav-icon', 'person')
+@section('nav-brand', 'Users')
+
 @section('body')
     @include('notification.notification')
     <form class="category" action="{{ route('users.store')}}" method="POST" >

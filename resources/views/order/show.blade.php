@@ -1,4 +1,8 @@
 @extends('layouts.layout')
+
+@section('nav-icon', 'visibility')
+@section('nav-brand', 'Order')
+
 @section('body')
     <div class="row">
         <div class="col-md-8">

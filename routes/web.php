@@ -5,6 +5,12 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CategoryController;
+
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\HelpController;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -48,3 +54,8 @@ Route::resource('profiles', ProfileController::class)
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/notifications', [NotificationController::class, 'index']);
+Route::get('/', [DashboardController::class, 'index']);
+Route::get('/settings', [SettingController::class, 'index']);
+Route::get('/helps', [HelpController::class, 'index']);
+

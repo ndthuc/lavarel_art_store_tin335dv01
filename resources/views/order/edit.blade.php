@@ -1,4 +1,8 @@
 @extends('layouts.layout')
+
+@section('nav-icon', 'update')
+@section('nav-brand', 'Order')
+
 @section('body')
     @include('notification.notification')
 
